@@ -46,11 +46,12 @@ Also, the finetuned models on Oil Polution are available for direct application 
 | Model | Links |
 | :-: | :-: |
 | ImageNet Pretrained | [PIDNet-S](https://drive.google.com/file/d/1hIBp_8maRr60-B3PF0NVtaA6TYBvO4y-/view?usp=sharing) |
-| Finetuned Oil Polution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EbKg85NGE59HvpkE6eOyTzMBQM6UZmer8mNRd0YQxxbfOg?e=SDJIfX) |
+| Finetuned Oil Polution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EfRU7xoC7UxBo3k22ViHGDUBwnatE4WleDwQKVhf0tM03g?e=UR1oa1) |
 
-| Dataset | Links |
+| Oil Polution Dataset | Links |
 | :-: | :-: |
-| Oil Polution | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EbKg85NGE59HvpkE6eOyTzMBQM6UZmer8mNRd0YQxxbfOg?e=SDJIfX) |
+| Dataset | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EYL1H3pE2eRLtm8jlTisVgYBLNF5UzWWKXnShCQvWuCo_w?e=Skum6F) |
+| Config | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/ETh3vr0YPTZOvXKQ48F7HEAB06GZPeUy9USR3W_8lkNdrw?e=KS0PhA) |
 
 ## Usage
 
@@ -75,7 +76,7 @@ python tools/train.py --cfg configs/oilpolution/pidnet_small_MBS_HSV_AUG_S.yaml 
 
 * Put all your images in `samples/` and then run the command below using OilPolution pretrained PIDNet-S for image format of .jpg:
 ````bash
-python tools/custom.py --a pidnet-s --p output/cityscapes/pidnet_small_0817/best.pt --t .jpg --r samples\
+python tools/custom.py --a pidnet-s --p output/oilpolution/pidnet_small_MBA_HSV_AUG_S/best.pt --t .jpg --r samples\
 ````
 
 ## Acknowledgement
