@@ -80,6 +80,6 @@ python tools/custom.py --a pidnet-s --p output/cityscapes/pidnet_small_0817/best
 
 ## Acknowledgement
 
-* Our implementation is related to [PIDNet: A Real-time Semantic Segmentation Network Inspired from PID Controller](https://github.com/XuJiacong/PIDNet).
+* Our implementation is based on [PIDNet: A Real-time Semantic Segmentation Network Inspired from PID Controller](https://github.com/XuJiacong/PIDNet).
 * Thanks for their nice contribution.
 
