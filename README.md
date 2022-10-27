@@ -46,7 +46,7 @@ Also, the finetuned models on Oil Polution are available for direct application 
 | Model | Links |
 | :-: | :-: |
 | ImageNet Pretrained | [PIDNet-S](https://drive.google.com/file/d/1hIBp_8maRr60-B3PF0NVtaA6TYBvO4y-/view?usp=sharing) |
-| Fine Tuned Oil Polution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EbKg85NGE59HvpkE6eOyTzMBQM6UZmer8mNRd0YQxxbfOg?e=SDJIfX) |
+| Finetuned Oil Polution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EbKg85NGE59HvpkE6eOyTzMBQM6UZmer8mNRd0YQxxbfOg?e=SDJIfX) |
 
 | Dataset | Links |
 | :-: | :-: |
