@@ -57,12 +57,12 @@ Also, the finetuned models on Oil Polution are available for direct application 
 
 ### 0. Prepare the dataset
 
-* Download the [OilPolution](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EbKg85NGE59HvpkE6eOyTzMBQM6UZmer8mNRd0YQxxbfOg?e=SDJIfX)  datasets, unzip them and replace in `root` dir.
+* Download the [OilPolution](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EYL1H3pE2eRLtm8jlTisVgYBLNF5UzWWKXnShCQvWuCo_w?e=Skum6F)   datasets and [configuration](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/ETh3vr0YPTZOvXKQ48F7HEAB06GZPeUy9USR3W_8lkNdrw?e=KS0PhA) files, unzip them and replace in `root` dir.
 * Check if the paths contained in lists of `data/list` are correct for dataset images.
 
 ### 1. Training
 
-* Download the ImageNet pretrained models and put them into `pretrained_models/imagenet/` dir.
+* Download the [ImageNet pretrained models](https://drive.google.com/file/d/1hIBp_8maRr60-B3PF0NVtaA6TYBvO4y-/view?usp=sharing) and put them into `pretrained_models/imagenet/` dir.
 * For example, train the PIDNet-S on OilPolution with batch size of 12 on 2 GPUs:
 ````bash
 python tools/train.py --cfg configs/oilpolution/pidnet_small_MBS_HSV_AUG_S.yaml GPUS (0,1) TRAIN.BATCH_SIZE_PER_GPU 6
