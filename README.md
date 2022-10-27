@@ -62,7 +62,7 @@ Also, the finetuned models on Oil Polution are available for direct application 
 ### 1. Training
 
 * Download the ImageNet pretrained models and put them into `pretrained_models/imagenet/` dir.
-* For example, train the PIDNet-S on Cityscapes with batch size of 12 on 2 GPUs:
+* For example, train the PIDNet-S on OilPolution with batch size of 12 on 2 GPUs:
 ````bash
 python tools/train.py --cfg configs/oilpolution/pidnet_small_MBS_HSV_AUG_S.yaml GPUS (0,1) TRAIN.BATCH_SIZE_PER_GPU 6
 ````
