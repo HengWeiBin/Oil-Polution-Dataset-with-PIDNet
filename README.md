@@ -46,18 +46,18 @@ Also, the finetuned models on Oil Polution are available for direct application 
 | Model | Links |
 | :-: | :-: |
 | ImageNet Pretrained | [PIDNet-S](https://drive.google.com/file/d/1hIBp_8maRr60-B3PF0NVtaA6TYBvO4y-/view?usp=sharing) |
-| Finetuned Oil Polution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EfRU7xoC7UxBo3k22ViHGDUBwnatE4WleDwQKVhf0tM03g?e=UR1oa1) |
+| Finetuned Oil Polution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeCUhUsx0dVKgBW-zx5nJy4BpdP9SEf7JzLhyeCfyWIj6A?e=vxkusi) |
 
 | Oil Polution Dataset | Links |
 | :-: | :-: |
-| Dataset | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EYL1H3pE2eRLtm8jlTisVgYBLNF5UzWWKXnShCQvWuCo_w?e=Skum6F) |
-| Config | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/ETh3vr0YPTZOvXKQ48F7HEAB06GZPeUy9USR3W_8lkNdrw?e=KS0PhA) |
+| Dataset | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/Ed_Ye-Y6osJJlyW1Vr8MNTABH9m9wPQ8i8hUdRBl70Gukw?e=k2YQ9L) |
+| Config | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeVjZAVXEoNEkXnUPUJhicsBYOLhLmR2Mm8xffY5x3k2Cg?e=ojfJ1E) |
 
 ## Usage
 
 ### 0. Prepare the dataset
 
-* Download the [OilPolution](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/EYL1H3pE2eRLtm8jlTisVgYBLNF5UzWWKXnShCQvWuCo_w?e=Skum6F)   datasets and [configuration](https://ntutcc-my.sharepoint.com/:u:/g/personal/107590050_cc_ntut_edu_tw/ETh3vr0YPTZOvXKQ48F7HEAB06GZPeUy9USR3W_8lkNdrw?e=KS0PhA) files, unzip them and replace in `root` dir.
+* Download the [OilPolution](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/Ed_Ye-Y6osJJlyW1Vr8MNTABH9m9wPQ8i8hUdRBl70Gukw?e=k2YQ9L)   datasets and [configuration](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeVjZAVXEoNEkXnUPUJhicsBYOLhLmR2Mm8xffY5x3k2Cg?e=ojfJ1E) files, unzip them and replace in `root` dir.
 * Check if the paths contained in lists of `data/list` are correct for dataset images.
 
 ### 1. Training
