@@ -1,1 +1,0 @@
-Put all the images for CamVid here!

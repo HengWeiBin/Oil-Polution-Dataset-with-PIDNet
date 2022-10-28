@@ -1,1 +1,0 @@
-Put the the folders of gtFine and leftImg8bit here!

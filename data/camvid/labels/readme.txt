@@ -1,1 +1,0 @@
-Put all the annotations for CamVid here!
