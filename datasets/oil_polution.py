@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# Modified based on https://github.com/HRNet/HRNet-Semantic-Segmentation
+# Modified based on https://github.com/XuJiacong/PIDNet
 # ------------------------------------------------------------------------------
 
 import os

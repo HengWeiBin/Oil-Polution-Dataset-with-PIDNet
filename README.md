@@ -1,8 +1,8 @@
 # Oil Polution Dataset with PIDNet
 	
-This is **not** the official repository for PIDNet ([PDF](https://arxiv.org/pdf/2206.02066)）
+*This is **not** the official repository for [PIDNet](https://github.com/XuJiacong/PIDNet) ([PDF](https://arxiv.org/pdf/2206.02066))*
 
-## Highlights
+## PIDNet Highlights
 <p align="center">
   <img src="figs/cityscapes_score.jpg" alt="overview-of-our-method" width="500"/></br>
   <span align="center">Comparison of inference speed and accuracy for real-time models on test set of Cityscapes.</span> 
@@ -14,30 +14,18 @@ This is **not** the official repository for PIDNet ([PDF](https://arxiv.org/pdf/
 
 ## Demos
 
-A demo of the segmentation performance of our proposed PIDNets: Original video (left) and predictions of PIDNet-S (middle) and PIDNet-L (right)
+A demo of the segmentation performance of PIDNets with our dataset: Original video (left) and predictions of PIDNet-S (right)
 <p align="center">
-  <img src="figs/video1_all.gif" alt="Cityscapes" width="800"/></br>
-  <span align="center">Cityscapes Stuttgart demo video #1</span>
-</p>
-
-<p align="center">
-  <img src="figs/video2_all.gif" alt="Cityscapes" width="800"/></br>
-  <span align="center">Cityscapes Stuttgart demo video #2</span>
+  <img src="figs/Oil Polution Sementic Segmentation - Made with Clipchamp.gif" alt="Oil Polution" width="100%"/></br>
+  <span align="center">Oil Polution Sementic Segmentation demo video</span>
 </p>
 
 ## Overview
 <p align="center">
-  <img src="figs/pidnet.jpg" alt="overview-of-our-method" width="800"/></br>
-  <span align="center">An overview of the basic architecture of our proposed Proportional-Integral-Derivative Network (PIDNet). </span> 
+  <img src="figs/pidnet.jpg" alt="overview-of-our-method" width="100%"/></br>
+  <span align="center">An overview of the basic architecture of Proportional-Integral-Derivative Network (PIDNet). </span> 
 </p>
 P, I and D branches are responsiable for detail preservation, context embedding and boundary detection, respectively.
-
-### Detailed Implementation
-<p align="center">
-  <img src="figs/pidnet_table.jpg" alt="overview-of-our-method" width="500"/></br>
-  <span align="center">Instantiation of the PIDNet for semantic segmentation. </span> 
-</p>
-For operation, "OP, N, C" means operation OP with stride of N and the No. output channel is C; Output: output size given input size of 1024; mxRB: m residual basic blocks; 2xRBB: 2 residual bottleneck blocks; OP<sub>1</sub>\OP<sub>2</sub>: OP<sub>1</sub> is used for PIDNet-L while OP<sub>1</sub> is applied in PIDNet-M and PIDNet-S. (m,n,C) are scheduled to be (2,3,32), (2,3,64) and (3,4,64) for PIDNet-S, PIDNet-M and PIDNet-L, respectively.
 
 ## Models
 For simple reproduction, here provided the ImageNet pretrained models.
@@ -53,10 +41,36 @@ Also, the finetuned models on Oil Polution are available for direct application 
 | Dataset | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/Ed_Ye-Y6osJJlyW1Vr8MNTABH9m9wPQ8i8hUdRBl70Gukw?e=k2YQ9L) |
 | Config | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeVjZAVXEoNEkXnUPUJhicsBYOLhLmR2Mm8xffY5x3k2Cg?e=ojfJ1E) |
 
+## Oil Polution Dataset
+### Hue Color Space Data Augmentation
+* Converts the hue value of *the oil part by gamma correction* so that it can be adjusted to other colors
+<p align="center">
+  <img src="figs/gamma_correction.png" alt="gamma_correction" width="100%"/></br>
+  <span align="center">Gamma Correction as Data Augmentation</span> 
+</p>
+
+### Why hue?
+  * By presenting the distribution of HSV values to compare whether effective data augmentation can be achieved by modifying the Hue values
+
+<p align="center">
+<img src="figs/dataset_histogram.png" alt="gamma_correction" width="100%"/></br>
+As you can see, our training data set has the most concentrated distribution of hues, so we decided to augment the data for the best results by targeting hues
+</p>
+
+### Mixing Background Augmentation (MBA)
+* This data augmentation method was proposed by LIGHT-WEIGHT MIXED STAGE PARTIAL NETWORK FOR SURVEILLANCE OBJECT DETECTION WITH BACKGROUND DATA AUGMENTATION ([pdf](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9506212&tag=1))
+* To include foreground information obtained
+by background subtraction to generate more training samples
+so that the learner can learn important features only around
+foreground objects.
+<p align="center">
+<img src="figs/mba_aug.png" alt="gamma_correction" width="100%"/></br>
+Mixing Background and original image from α = 10% to 30%
+</p>
+
 ## Usage
-
 ### 0. Prepare the dataset
-
+* Clone [offical repository](https://github.com/XuJiacong/PIDNet)
 * Download the [OilPolution](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/Ed_Ye-Y6osJJlyW1Vr8MNTABH9m9wPQ8i8hUdRBl70Gukw?e=k2YQ9L)   datasets and [configuration](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeVjZAVXEoNEkXnUPUJhicsBYOLhLmR2Mm8xffY5x3k2Cg?e=ojfJ1E) files, unzip them and replace in `root` dir.
 * Check if the paths contained in lists of `data/list` are correct for dataset images.
 
