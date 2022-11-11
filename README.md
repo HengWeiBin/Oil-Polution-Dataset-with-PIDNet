@@ -79,7 +79,7 @@ Mixing Background and original image from α = 10% to 30%
 * Download the [ImageNet pretrained models](https://drive.google.com/file/d/1hIBp_8maRr60-B3PF0NVtaA6TYBvO4y-/view?usp=sharing) and put them into `pretrained_models/imagenet/` dir.
 * For example, train the PIDNet-S on OilPolution with batch size of 12 on 2 GPUs:
 ````bash
-python tools/train.py --cfg configs/oilpolution/pidnet_small_MBS_HSV_AUG_S.yaml GPUS (0,1) TRAIN.BATCH_SIZE_PER_GPU 6
+python tools/train.py --cfg configs/oilpolution/pidnet_small_MBA_HSV_AUG_S.yaml GPUS (0,1) TRAIN.BATCH_SIZE_PER_GPU 6
 ````
 
 ### 2. Evaluation & Speed Measurement
