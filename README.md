@@ -1,4 +1,4 @@
-# Oil Polution Dataset with PIDNet
+# Oil Pollution Dataset and PIDNet
 	
 *This is **not** the official repository for [PIDNet](https://github.com/XuJiacong/PIDNet) ([PDF](https://arxiv.org/pdf/2206.02066))*
 
