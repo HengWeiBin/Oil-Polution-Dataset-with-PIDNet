@@ -9,10 +9,10 @@ WORKERS: 8
 PRINT_FREQ: 10
 
 DATASET:
-  DATASET: oilpolution
+  DATASET: oilpollution
   ROOT: data/
-  TEST_SET: 'list/oilpolution/val.lst'
-  TRAIN_SET: 'list/oilpolution/train.lst'
+  TEST_SET: 'list/oilpollution/val.lst'
+  TRAIN_SET: 'list/oilpollution/train.lst'
   NUM_CLASSES: 6
 MODEL:
   NAME: pidnet_small

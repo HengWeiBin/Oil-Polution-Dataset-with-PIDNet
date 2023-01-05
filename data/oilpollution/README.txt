@@ -1,6 +1,6 @@
-Put oilpolution dataset over here!
+Put oilpollution dataset over here!
 
-oilpolution
+oilpollution
   - Img
   - Seg
 

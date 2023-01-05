@@ -16,8 +16,8 @@
 
 A demo of the segmentation performance of PIDNets with our dataset: Original video (left) and predictions of PIDNet-S (right)
 <p align="center">
-  <img src="figs/Oil Polution Sementic Segmentation - Made with Clipchamp.gif" alt="Oil Polution" width="100%"/></br>
-  <span align="center">Oil Polution Sementic Segmentation demo video</span>
+  <img src="figs/Oil Pollution Sementic Segmentation - Made with Clipchamp.gif" alt="Oil Pollution" width="100%"/></br>
+  <span align="center">Oil Pollution Sementic Segmentation demo video</span>
 </p>
 
 ## Overview
@@ -29,12 +29,12 @@ P, I and D branches are responsiable for detail preservation, context embedding 
 
 ## Models
 For simple reproduction, here provided the ImageNet pretrained models.
-Also, the finetuned models on Oil Polution are available for direct application in marine oil polution detection.
+Also, the finetuned models on Oil Pollution are available for direct application in marine oil pollution detection.
 
 | Model | Links |
 | :-: | :-: |
 | ImageNet Pretrained | [PIDNet-S](https://drive.google.com/file/d/1hIBp_8maRr60-B3PF0NVtaA6TYBvO4y-/view?usp=sharing) |
-| Finetuned Oil Polution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeCUhUsx0dVKgBW-zx5nJy4BpdP9SEf7JzLhyeCfyWIj6A?e=vxkusi) |
+| Finetuned Oil Pollution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeCUhUsx0dVKgBW-zx5nJy4BpdP9SEf7JzLhyeCfyWIj6A?e=vxkusi) |
 
 ## Evaluation Data
 | Data Augmentation | Mean IoU (%) | Pixel Accuracy (%) | Mean Accuracy (%) |
@@ -69,8 +69,8 @@ Also, the finetuned models on Oil Polution are available for direct application 
 
 
 
-## Oil Polution Dataset
-| Oil Polution Dataset | Links |
+## Oil Pollution Dataset
+| Oil Pollution Dataset | Links |
 | :-: | :-: |
 | Dataset | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/Ed_Ye-Y6osJJlyW1Vr8MNTABH9m9wPQ8i8hUdRBl70Gukw?e=k2YQ9L) |
 | Config | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeVjZAVXEoNEkXnUPUJhicsBYOLhLmR2Mm8xffY5x3k2Cg?e=ojfJ1E) |
@@ -113,21 +113,21 @@ Mixing Background and original image from α = 10% to 30%
 ## Usage
 ### 0. Prepare the dataset
 * Clone [offical repository](https://github.com/XuJiacong/PIDNet)
-* Download the [OilPolution](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/Ed_Ye-Y6osJJlyW1Vr8MNTABH9m9wPQ8i8hUdRBl70Gukw?e=yN1T30)   datasets and [configuration](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeVjZAVXEoNEkXnUPUJhicsBYOLhLmR2Mm8xffY5x3k2Cg?e=ojfJ1E) files, unzip them and replace in `root` dir.
+* Download the [OilPollution](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/Ed_Ye-Y6osJJlyW1Vr8MNTABH9m9wPQ8i8hUdRBl70Gukw?e=yN1T30)   datasets and [configuration](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeVjZAVXEoNEkXnUPUJhicsBYOLhLmR2Mm8xffY5x3k2Cg?e=ojfJ1E) files, unzip them and replace in `root` dir.
 * Check if the paths contained in lists of `data/list` are correct for dataset images.
 
 ### 1. Training
 
 * Download the [ImageNet pretrained models](https://drive.google.com/file/d/1hIBp_8maRr60-B3PF0NVtaA6TYBvO4y-/view?usp=sharing) and put them into `pretrained_models/imagenet/` dir.
-* For example, train the PIDNet-S on OilPolution with on 2 GPUs:
+* For example, train the PIDNet-S on OilPollution with on 2 GPUs:
 ````bash
-python3 tools/train.py --cfg configs/oilpolution/pidnet_small_oil_HSV_MBA.yaml GPUS (0,1)
+python3 tools/train.py --cfg configs/oilpollution/pidnet_small_oil_HSV_MBA.yaml GPUS "(0,1)"
 ````
 
 ### 2. Evaluation
-* Evaluate pretrained PIDNet-S with oil polution dataset
+* Evaluate pretrained PIDNet-S with oil pollution dataset
 ````
-python3 tools/eval.py --cfg configs/oilpolution/pidnet_small_oil_HSV_MBA.yaml TEST.MODEL_FILE output/oilpolution/pidnet_small_oil_HSV_MBA/best.pt
+python3 tools/eval.py --cfg configs/oilpollution/pidnet_small_oil_HSV_MBA.yaml TEST.MODEL_FILE output/oilpollution/pidnet_small_oil_HSV_MBA/best.pt
 ````
 
 ### 3. Speed Measurement
@@ -135,9 +135,9 @@ python3 tools/eval.py --cfg configs/oilpolution/pidnet_small_oil_HSV_MBA.yaml TE
 
 ### 4. Custom Inputs
 
-* Put all your images in `samples/` and then run the command below using OilPolution pretrained PIDNet-S for image format of .jpg:
+* Put all your images in `samples/` and then run the command below using OilPollution pretrained PIDNet-S for image format of .jpg:
 ````bash
-python3 tools/custom.py --model-type 'pidnet-s' --model output/oilpolution/pidnet_small_oil_HSV_MBA/best.pt --format .jpg --input samples --n-class 6
+python3 tools/custom.py --model-type 'pidnet-s' --model output/oilpollution/pidnet_small_oil_HSV_MBA/best.pt --format .jpg --input samples --n-class 6
 ````
 
 ## Acknowledgement

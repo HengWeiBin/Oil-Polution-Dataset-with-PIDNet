@@ -13,25 +13,26 @@ from PIL import Image
 import torch
 from .base_dataset import BaseDataset
 
-class OilPolution(BaseDataset):
-    def __init__(self, 
-                 root, 
+
+class OilPollution(BaseDataset):
+    def __init__(self,
+                 root,
                  list_path,
                  num_classes=6,
-                 multi_scale=True, 
-                 flip=True, 
-                 ignore_label=255, 
-                 base_size=2048, 
+                 multi_scale=True,
+                 flip=True,
+                 ignore_label=255,
+                 base_size=2048,
                  crop_size=(512, 1024),
                  scale_factor=16,
-                 mean=[0.485, 0.456, 0.406], 
+                 mean=[0.485, 0.456, 0.406],
                  std=[0.229, 0.224, 0.225],
                  bd_dilate_size=4,
                  hsv_aug=True,
                  mba_aug=True):
 
-        super(OilPolution, self).__init__(ignore_label, base_size,
-                crop_size, scale_factor, mean, std,)
+        super(OilPollution, self).__init__(ignore_label, base_size,
+                                           crop_size, scale_factor, mean, std,)
 
         self.root = root
         self.list_path = list_path
@@ -44,10 +45,11 @@ class OilPolution(BaseDataset):
         self.files = self.read_files()
 
         self.label_mapping = {19: 0, 20: 1, 21: 2, 22: 3, 23: 4, 24: 5}
-        self.class_weights = torch.FloatTensor([1.1000, 1.0009, 0.9000, 1.5000, 1.8000 , 1.9000]).cuda()
-        
+        self.class_weights = torch.FloatTensor(
+            [1.1000, 1.0009, 0.9000, 1.5000, 1.8000, 1.9000]).cuda()
+
         self.bd_dilate_size = bd_dilate_size
-    
+
     def read_files(self):
         files = []
         if 'test' in self.list_path:
@@ -75,7 +77,7 @@ class OilPolution(BaseDataset):
 
                 files.extend(new_files)
         return files
-        
+
     def convert_label(self, label, inverse=False):
         temp = np.full_like(label, self.ignore_label)
         if inverse:
@@ -105,21 +107,21 @@ class OilPolution(BaseDataset):
         # Our data augmentation
         if 'HSV' in item['aug']:
             gamma = random.uniform(0, 2.0)
-            image = self.random_HSV_augment(image, label, gamma, self.label_mapping[24])
+            image = self.random_HSV_augment(
+                image, label, gamma, self.label_mapping[24])
         if 'MBA' in item['aug']:
             alpha = random.uniform(0, 0.3)
-            image = self.mixingBackgroundAugmentation(image, label, alpha, self.label_mapping[24])
+            image = self.mixingBackgroundAugmentation(
+                image, label, alpha, self.label_mapping[24])
 
-        image, label, edge = self.gen_sample(image, label, 
-                                self.multi_scale, self.flip, edge_size=self.bd_dilate_size)
+        image, label, edge = self.gen_sample(image, label,
+                                             self.multi_scale, self.flip, edge_size=self.bd_dilate_size)
 
         return image.copy(), label.copy(), edge.copy(), np.array(size), name
 
-    
     def single_scale_inference(self, config, model, image):
         pred = self.inference(config, model, image)
         return pred
-
 
     def save_pred(self, preds, sv_path, name):
         preds = np.asarray(np.argmax(preds.cpu(), axis=1), dtype=np.uint8)
