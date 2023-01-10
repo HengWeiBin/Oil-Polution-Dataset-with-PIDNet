@@ -2,6 +2,14 @@
 	
 *This is **not** the official repository for [PIDNet](https://github.com/XuJiacong/PIDNet) ([PDF](https://arxiv.org/pdf/2206.02066))*
 
+## What's new
+- Without remove logging, we added tqdm for **better visualization** of training, valisation and evaluation
+  <img align="center" src="figs/tqdm.png" alt="overview-of-our-method" width="100%"/>
+- Added output of **precision, recall and F1-score**
+- Improved **readability** and versatility of parameters
+  <img align="center" src="figs/args.png" alt="overview-of-our-method" width="100%"/>
+- Improved **file path handling**
+
 ## PIDNet Highlights
 <p align="center">
   <img src="figs/cityscapes_score.jpg" alt="overview-of-our-method" width="500"/></br>
@@ -112,7 +120,7 @@ Mixing Background and original image from α = 10% to 30%
 
 ## Usage
 ### 0. Prepare the dataset
-* Clone [offical repository](https://github.com/XuJiacong/PIDNet)
+* Clone this repository or [offical repository](https://github.com/XuJiacong/PIDNet)
 * Download the [OilPollution](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/Ed_Ye-Y6osJJlyW1Vr8MNTABH9m9wPQ8i8hUdRBl70Gukw?e=yN1T30)   datasets and [configuration](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeVjZAVXEoNEkXnUPUJhicsBYOLhLmR2Mm8xffY5x3k2Cg?e=ojfJ1E) files, unzip them and replace in `root` dir.
 * Check if the paths contained in lists of `data/list` are correct for dataset images.
 

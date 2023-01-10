@@ -1,0 +1,59 @@
+CUDNN:
+  BENCHMARK: true
+  DETERMINISTIC: false
+  ENABLED: true
+GPUS: (0,)
+OUTPUT_DIR: 'output'
+LOG_DIR: 'log'
+WORKERS: 8
+PRINT_FREQ: 10
+
+DATASET:
+  DATASET: oilpollution
+  ROOT: data/
+  TEST_SET: 'list/oilpollution/val.lst'
+  TRAIN_SET: 'list/oilpollution/train.lst'
+  NUM_CLASSES: 6
+MODEL:
+  NAME: pidnet_large
+  NUM_OUTPUTS: 2
+  PRETRAINED: "pretrained_models/imagenet/PIDNet_L_ImageNet.pth.tar"
+LOSS:
+  USE_OHEM: true
+  OHEMTHRES: 0.9
+  OHEMKEEP: 131072
+  BALANCE_WEIGHTS: [0.4, 1.0]
+  SB_WEIGHTS: 1.0
+TRAIN:
+  IMAGE_SIZE:
+  - 512
+  - 1024
+  BASE_SIZE: 2048
+  BATCH_SIZE_PER_GPU: 32
+  SHUFFLE: true
+  BEGIN_EPOCH: 0
+  END_EPOCH: 175
+  RESUME: false
+  OPTIMIZER: sgd
+  LR: 0.01
+  WD: 0.0005
+  MOMENTUM: 0.9
+  NESTEROV: false
+  FLIP: true
+  MULTI_SCALE: true
+  IGNORE_LABEL: 255
+  SCALE_FACTOR: 16
+  HSV_AUG: true
+  MBA_AUG: true
+TEST:
+  IMAGE_SIZE:
+  - 1024
+  - 2048
+  BASE_SIZE: 2048
+  BATCH_SIZE_PER_GPU: 1
+  FLIP_TEST: false
+  MULTI_SCALE: false
+  MODEL_FILE: ''
+  OUTPUT_INDEX: 1
+  HSV_AUG: false
+  MBA_AUG: false

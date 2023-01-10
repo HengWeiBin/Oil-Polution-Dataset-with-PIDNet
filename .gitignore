@@ -1,0 +1,8 @@
+*.pyc
+log/
+*.tar
+*.pt
+output/
+data/oilpollution/Seg/
+data/oilpollution/Img/
+data/cityscapes/augment_main.py
