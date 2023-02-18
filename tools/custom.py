@@ -3,7 +3,7 @@
 # Modified based on https://github.com/XuJiacong/PIDNet
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-# example command: python3 tools/custom.py --model-type 'pidnet-s' --model output/cityscapes/pidnet_small_0817/best.pt --format .jpg --input samples\ --n-class 6
+# example command: python3 tools\custom.py --model-type 'pidnet-l' --model output\elanroad\best.pt --input samples\Cam5.mp4 --n-class 2 --visualize --show
 # ------------------------------------------------------------------------------
 
 import glob
@@ -16,11 +16,13 @@ import models
 import torch
 import torch.nn.functional as F
 from PIL import Image
+from utils.dataloader import LoadImages
+from utils.utils import time_synchronized
 
 mean = [0.485, 0.456, 0.406]
 std = [0.229, 0.224, 0.225]
 
-color_map = [[128, 192, 128], #(128, 64,128),
+color_map = [(0, 0, 0),#[128, 192, 128], #(128, 64,128),
              [128, 64, 128], #(244, 35,232),
              [64, 64, 0], #( 70, 70, 70),
              [0, 192, 128], #(102,102,156),
@@ -47,15 +49,16 @@ def parse_args():
     parser.add_argument('--n-class', help='Number of categories', type=int, default=19)
     parser.add_argument('--model', help='dir for pretrained model', default='../pretrained_models/cityscapes/PIDNet_L_Cityscapes_test.pt', type=str)
     parser.add_argument('--input', help='root or dir for input images', default='../samples/', type=str)
-    parser.add_argument('--format', help='the format of input images (.jpg, .png, ...)', default='.png', type=str)     
+    parser.add_argument('--visualize', help='Output results combined with semantic segmentation', action='store_true')     
+    parser.add_argument('--show', help='Show output', action='store_true')     
 
     args = parser.parse_args()
 
     return args
 
 def input_transform(image):
-    image = image.astype(np.float32)[:, :, ::-1]
-    image = image / 255.0
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB).astype(np.float32)
+    image /= 255.0
     image -= mean
     image /= std
     return image
@@ -75,37 +78,62 @@ def load_pretrained(model, pretrained):
     
     return model
 
-if __name__ == '__main__':
-    args = parse_args()
-    images_list = glob.glob(os.path.join(args.input, '*' + args.format))
-    sv_path = os.path.join(args.input, 'outputs')
+def main(args):
+    dataloader = LoadImages(args.input)
+    vid_writer = vid_path = None
     
     model = models.pidnet.get_pred_model(args.model_type, args.n_class)
     model = load_pretrained(model, args.model).cuda()
     model.eval()
     with torch.no_grad():
-        for img_path in images_list:
-            img = cv2.imread(img_path, cv2.IMREAD_COLOR)
-            sv_img = np.zeros_like(img).astype(np.uint8)
-            img = input_transform(img)
+        for img_path, imgOrigin, vid_cap in dataloader:
+            sv_img = np.zeros_like(imgOrigin).astype(np.uint8)
+            img = input_transform(imgOrigin)
             img = img.transpose((2, 0, 1)).copy()
             img = torch.from_numpy(img).unsqueeze(0).cuda()
+            t1 = time_synchronized()
             pred = model(img)
+            t2 = time_synchronized()
             pred = F.interpolate(pred, size=img.size()[-2:], 
                                  mode='bilinear', align_corners=True)
             pred = torch.argmax(pred, dim=1).squeeze(0).cpu().numpy()
             
-            for i, color in enumerate(color_map):
+            # Apply color
+            for i in np.unique(pred):
                 for j in range(3):
                     sv_img[:,:,j][pred==i] = color_map[i][j]
-            sv_img = Image.fromarray(sv_img)
+            if args.visualize:
+                sv_img = cv2.addWeighted(imgOrigin, 0.5, np.array(sv_img), 0.5, 0)
+            if args.show:
+                cv2.imshow("Result", sv_img)
+                cv2.waitKey(1)
             
+            # Save results
+            sv_path, img_name = os.path.split(img_path)
+            sv_path = os.path.join(sv_path, 'outputs')
+            save_path = os.path.join(sv_path, img_name)
             if not os.path.exists(sv_path):
                 os.mkdir(sv_path)
-            _, img_name = os.path.split(img_path)
-            sv_img.save(os.path.join(sv_path, img_name))
+            if dataloader.mode == 'image':
+                cv2.imwrite(save_path, sv_img)
+                print(f" The image with the result is saved in: {save_path}")
+            else:  # 'video'
+                if vid_path != save_path:  # new video
+                    vid_path = save_path
+                    if isinstance(vid_writer, cv2.VideoWriter):
+                        vid_writer.release()  # release previous video writer
+                    if vid_cap:  # video
+                        fps = vid_cap.get(cv2.CAP_PROP_FPS)
+                        w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                        h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                    vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
+                vid_writer.write(sv_img)
+            print(f'Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference')
+
+    if vid_writer is not None:
+        vid_writer.release()
+    cv2.destroyAllWindows()
             
-            
-            
-        
-        
+if __name__ == '__main__':
+    args = parse_args()
+    main(args)

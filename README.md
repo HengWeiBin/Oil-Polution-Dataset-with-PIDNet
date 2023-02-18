@@ -9,6 +9,7 @@
 - Improved **readability** and versatility of parameters
   <img align="center" src="figs/args.png" alt="overview-of-our-method" width="100%"/>
 - Improved **file path handling**
+- Improved **loading of dataset** (support single image, video, and directory),  added **visualize and show results** during inference
 
 ## PIDNet Highlights
 <p align="center">
@@ -143,9 +144,13 @@ python3 tools/eval.py --cfg configs/oilpollution/pidnet_small_oil_HSV_MBA.yaml T
 
 ### 4. Custom Inputs
 
-* Put all your images in `samples/` and then run the command below using OilPollution pretrained PIDNet-S for image format of .jpg:
+* Put all your images in `samples/` and then run the command below using OilPollution pretrained PIDNet-S for all files in `samples`/:
 ````bash
-python3 tools/custom.py --model-type 'pidnet-s' --model output/oilpollution/pidnet_small_oil_HSV_MBA/best.pt --format .jpg --input samples --n-class 6
+python3 tools/custom.py --model-type 'pidnet-s' --model output/oilpollution/pidnet_small_oil_HSV_MBA/best.pt --input samples --n-class 6
+````
+* Using OilPollution pretrained PIDNet-L for all files in `samples/` and show visualized results:
+````bash
+python3 tools/custom.py --model-type 'pidnet-l' --model output/oilpollution/pidnet_small_oil_HSV_MBA/best.pt --input samples --n-class 6 --visualize --show
 ````
 
 ## Acknowledgement
