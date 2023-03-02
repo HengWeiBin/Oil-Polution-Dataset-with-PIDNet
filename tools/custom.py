@@ -129,7 +129,7 @@ def main(args):
                         h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
                     vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
                 vid_writer.write(save_img)
-            print(f'Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference ({(1E3 * (t4 - t3)):.1f}ms) visualize')
+            print(f'Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference.')
 
     if vid_writer is not None:
         vid_writer.release()
