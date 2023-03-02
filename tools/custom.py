@@ -87,7 +87,6 @@ def main(args):
     model.eval()
     with torch.no_grad():
         for img_path, imgOrigin, vid_cap in dataloader:
-            sv_img = np.zeros_like(imgOrigin).astype(np.uint8)
             img = input_transform(imgOrigin)
             img = img.transpose((2, 0, 1)).copy()
             img = torch.from_numpy(img).unsqueeze(0).cuda()
@@ -99,13 +98,15 @@ def main(args):
             pred = torch.argmax(pred, dim=1).squeeze(0).cpu().numpy()
             
             # Apply color
+            save_img = np.zeros_like(imgOrigin).astype(np.uint8)
             for i in np.unique(pred):
                 for j in range(3):
-                    sv_img[:,:,j][pred==i] = color_map[i][j]
+                    save_img[:,:,j][pred==i] = color_map[i][j]
             if args.visualize:
-                sv_img = cv2.addWeighted(imgOrigin, 0.5, np.array(sv_img), 0.5, 0)
+                save_img = cv2.addWeighted(imgOrigin, 0.5, save_img, 0.5, 0)
+                save_img[pred==0] = imgOrigin[pred==0]
             if args.show:
-                cv2.imshow("Result", sv_img)
+                cv2.imshow("Result", save_img)
                 cv2.waitKey(1)
             
             # Save results
@@ -115,7 +116,7 @@ def main(args):
             if not os.path.exists(sv_path):
                 os.mkdir(sv_path)
             if dataloader.mode == 'image':
-                cv2.imwrite(save_path, sv_img)
+                cv2.imwrite(save_path, save_img)
                 print(f" The image with the result is saved in: {save_path}")
             else:  # 'video'
                 if vid_path != save_path:  # new video
@@ -127,8 +128,8 @@ def main(args):
                         w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
                         h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
                     vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
-                vid_writer.write(sv_img)
-            print(f'Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference')
+                vid_writer.write(save_img)
+            print(f'Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference ({(1E3 * (t4 - t3)):.1f}ms) visualize')
 
     if vid_writer is not None:
         vid_writer.release()
