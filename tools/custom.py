@@ -3,7 +3,7 @@
 # Modified based on https://github.com/XuJiacong/PIDNet
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-# example command: python3 tools\custom.py --model-type 'pidnet-l' --model output\elanroad\best.pt --input samples\Cam5.mp4 --n-class 2 --visualize --show
+# example command: python tools\custom.py --model-type 'pidnet-l' --model output\elanroad\pidnet_large_elan_HSV_MBA\best.pt --input samples\road.jpg --n-class 2 --visualize --show
 # ------------------------------------------------------------------------------
 
 import glob
@@ -93,7 +93,7 @@ def main(args):
             t1 = time_synchronized()
             pred = model(img)
             t2 = time_synchronized()
-            pred = F.interpolate(pred, size=img.size()[-2:], 
+            pred = F.interpolate(pred, size=imgOrigin.shape[:-1], 
                                  mode='bilinear', align_corners=True)
             pred = torch.argmax(pred, dim=1).squeeze(0).cpu().numpy()
             
