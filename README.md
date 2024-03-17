@@ -43,7 +43,7 @@ Also, the finetuned models on Oil Pollution are available for direct application
 | Model | Links |
 | :-: | :-: |
 | ImageNet Pretrained | [PIDNet-S](https://drive.google.com/file/d/1hIBp_8maRr60-B3PF0NVtaA6TYBvO4y-/view?usp=sharing) |
-| Finetuned Oil Pollution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeCUhUsx0dVKgBW-zx5nJy4BpdP9SEf7JzLhyeCfyWIj6A?e=vxkusi) |
+| Finetuned Oil Pollution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeCUhUsx0dVKgBW-zx5nJy4BpdP9SEf7JzLhyeCfyWIj6A?e=vxkusi) | THE LINK DOES NOT WORK. CAN YOU PLEASE UPDATE THE LINKS?
 
 ## Evaluation Data
 | Data Augmentation | Mean IoU (%) | Pixel Accuracy (%) | Mean Accuracy (%) |
