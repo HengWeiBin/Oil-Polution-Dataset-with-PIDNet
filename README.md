@@ -43,7 +43,7 @@ Also, the finetuned models on Oil Pollution are available for direct application
 | Model | Links |
 | :-: | :-: |
 | ImageNet Pretrained | [PIDNet-S](https://drive.google.com/file/d/1hIBp_8maRr60-B3PF0NVtaA6TYBvO4y-/view?usp=sharing) |
-| Finetuned Oil Pollution | [PIDNet-S](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeCUhUsx0dVKgBW-zx5nJy4BpdP9SEf7JzLhyeCfyWIj6A?e=vxkusi) |
+| Finetuned Oil Pollution | [PIDNet-S](https://github.com/HengWeiBin/Oil-Polution-Dataset-with-PIDNet/releases/download/v1.0.0/output.zip) |
 
 ## Evaluation Data
 | Data Augmentation | Mean IoU (%) | Pixel Accuracy (%) | Mean Accuracy (%) |
@@ -81,8 +81,8 @@ Also, the finetuned models on Oil Pollution are available for direct application
 ## Oil Pollution Dataset
 | Oil Pollution Dataset | Links |
 | :-: | :-: |
-| Dataset | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/Ed_Ye-Y6osJJlyW1Vr8MNTABH9m9wPQ8i8hUdRBl70Gukw?e=k2YQ9L) |
-| Config | [Download](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeVjZAVXEoNEkXnUPUJhicsBYOLhLmR2Mm8xffY5x3k2Cg?e=ojfJ1E) |
+| Dataset | [Download](https://github.com/HengWeiBin/Oil-Polution-Dataset-with-PIDNet/releases/download/v1.0.0/data.zip) |
+| Config | [Download](https://github.com/HengWeiBin/Oil-Polution-Dataset-with-PIDNet/releases/download/v1.0.0/PIDNet.zip) |
 
 | ClassName | Label |
 |:---------:|:-----:|
@@ -122,7 +122,7 @@ Mixing Background and original image from α = 10% to 30%
 ## Usage
 ### 0. Prepare the dataset
 * Clone this repository or [offical repository](https://github.com/XuJiacong/PIDNet)
-* Download the [OilPollution](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/Ed_Ye-Y6osJJlyW1Vr8MNTABH9m9wPQ8i8hUdRBl70Gukw?e=yN1T30)   datasets and [configuration](https://ntutcc-my.sharepoint.com/:u:/g/personal/111598401_cc_ntut_edu_tw/EeVjZAVXEoNEkXnUPUJhicsBYOLhLmR2Mm8xffY5x3k2Cg?e=ojfJ1E) files, unzip them and replace in `root` dir.
+* Download the [OilPollution](https://github.com/HengWeiBin/Oil-Polution-Dataset-with-PIDNet/releases/download/v1.0.0/data.zip)   datasets and [configuration](https://github.com/HengWeiBin/Oil-Polution-Dataset-with-PIDNet/releases/download/v1.0.0/PIDNet.zip) files, unzip them and replace in `root` dir.
 * Check if the paths contained in lists of `data/list` are correct for dataset images.
 
 ### 1. Training
